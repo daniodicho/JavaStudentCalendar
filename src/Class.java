@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class Class {
 
     String name ;
-    String days[];
+    String days;
     int difficulty;
     String startTime;
     String endTime;
@@ -23,7 +23,7 @@ public class Class {
         assignments = new LinkedList<Assignment>();
     }
     
-    public Class(String n, int d, String day[], String sT, String tL, int u, double cG, boolean rR) {
+    public Class(String n, int d, String day, String sT, String tL, int u, double cG, boolean rR) {
         name = n;
         days = day;
         difficulty = d;

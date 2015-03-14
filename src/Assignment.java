@@ -1,26 +1,34 @@
+//package csun.aims.aimssmartcalendar;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Calendar;
+
 public class Assignment {
 
 	int Id;
 	String Name; 
-	String Course;
-	String DueDate;
-	String DueTime;
+	Class Course;
+	long DueDateandTime;
+	//String DueTime;
 	int Type ;
-	int Priority;
+	double Priority;
 	String SuggestedTime;
 	Double AllocatedTime;
 	String ActualCompletedTime;
 	Boolean Finished;
 	double Grade ;
 	
-	Assignment(String newName, String newClass, String newDueDate, String newDueTime, int newType, int newPriority  ){
+	Assignment(String newName, Class newClass, long newDueDate,  int newType ){
 		Name = newName;
-		DueDate = newDueDate;
-		DueTime = newDueTime;
+		DueDateandTime = newDueDate;
+		//DueTime = newDueTime;
 		Type = newType;
-		Priority = newPriority;
 		Course = newClass;
 		Finished = false;
+		Priority = calculatePriority();
 	}
 	
 	public String getName() {
@@ -30,24 +38,19 @@ public class Assignment {
 	public void setName(String name) {
 		Name = name;
 	}
-	public String getCourse() {
+	public Class getCourse() {
 		return Course;
 	}
-	public void setCourse(String theClass) {
+	public void setCourse(Class theClass) {
 		Course = theClass;
 	}
-	public String getDueDate() {
-		return DueDate;
+	public long getDueDate() {
+		return DueDateandTime;
 	}
-	public void setDueDate(String dueDate) {
-		DueDate = dueDate;
+	public void setDueDate(long dueDate) {
+		DueDateandTime = dueDate;
 	}
-	public String getDueTime() {
-		return DueTime;
-	}
-	public void setDueTime(String dueTime) {
-		DueTime = dueTime;
-	}
+	
 	public String getType() {
 		if(Type==0){
 			return "homework";
@@ -63,10 +66,10 @@ public class Assignment {
 	public void setType(int type) {
 		Type = type;
 	}
-	public int getPriority() {
+	public double getPriority() {
 		return Priority;
 	}
-	public void setPriority(int priority) {
+	public void setPriority(double priority) {
 		Priority = priority;
 	}
 	public String getSuggestedTime() {
@@ -104,6 +107,24 @@ public class Assignment {
 	}
 	public void setId(int newId){
 		this.Id = newId;
+	}
+	public double calculatePriority(){
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy/HH:MM:SS");
+       
+        DateFormat df = new SimpleDateFormat("YYYYMMddHH");
+        long d = getDueDate();
+        
+
+        
+        String now = df.format(new Date());
+        int nowInt = Integer.parseInt(now);
+        
+        long diff = (d - nowInt)+((d%100) -(nowInt%100))*3;
+
+
+        System.out.println(diff);
+		return 100*(7.0/(diff) )* (1+Type)*(1/getCourse().getCurrentGrade())*getCourse().getDifficulty();
+		
 	}
 	
 }
