@@ -1,10 +1,11 @@
 public class Assignment {
 
+	int Id;
 	String Name; 
 	String Course;
 	String DueDate;
 	String DueTime;
-	String Type ;
+	int Type ;
 	int Priority;
 	String SuggestedTime;
 	Double AllocatedTime;
@@ -12,7 +13,7 @@ public class Assignment {
 	Boolean Finished;
 	double Grade ;
 	
-	Assignment(String newName, String newClass, String newDueDate, String newDueTime, String newType, int newPriority  ){
+	Assignment(String newName, String newClass, String newDueDate, String newDueTime, int newType, int newPriority  ){
 		Name = newName;
 		DueDate = newDueDate;
 		DueTime = newDueTime;
@@ -48,9 +49,18 @@ public class Assignment {
 		DueTime = dueTime;
 	}
 	public String getType() {
-		return Type;
+		if(Type==0){
+			return "homework";
+		}
+		else if (Type ==1){
+			return "project";
+		}
+		else
+		{
+			return "test";
+		}
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		Type = type;
 	}
 	public int getPriority() {
@@ -89,5 +99,11 @@ public class Assignment {
 	public void setGrade(double grade) {
 		Grade = grade;
 	}
-
+	public int getId(){
+		return this.Id;
+	}
+	public void setId(int newId){
+		this.Id = newId;
+	}
+	
 }

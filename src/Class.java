@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Class {
 
     String name ;
@@ -7,7 +9,7 @@ public class Class {
     String endTime;
     int units;
     double currentGrade ;
-    Assignment assignments ;
+    LinkedList <Assignment> assignments;
     boolean requiresReading ;
 
     public Class() {
@@ -18,6 +20,7 @@ public class Class {
         units = 0;
         currentGrade = 0;
         requiresReading = false;
+        assignments = new LinkedList<Assignment>();
     }
     
     public Class(String n, int d, String day[], String sT, String tL, int u, double cG, boolean rR) {
@@ -71,12 +74,24 @@ public class Class {
         this.units = u;
     }
     
-    public Assignment getAssignments() {
+    public void addAssignment(Assignment a){
+    	assignments.add(a);
+    }
+    
+    public void deleteAssignment(int id){
+    	for(int i=0;i<assignments.size();i++){
+    		if(assignments.get(i).getId()==id){
+    			assignments.remove(i);
+    		}
+    	}
+    }
+    
+    public LinkedList<Assignment> getAssignments() {
         return this.assignments;
     }
     
-    public void setAssignments(Assignment aS) {
-        this.assignments = aS;
+    public Assignment getAssignment(int index){
+    	return assignments.get(index);
     }
     
     public double getCurrentGrade() {
