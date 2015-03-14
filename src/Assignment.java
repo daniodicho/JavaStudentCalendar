@@ -111,7 +111,7 @@ public class Assignment {
 	public double calculatePriority(){
         //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy/HH:MM:SS");
        
-        DateFormat df = new SimpleDateFormat("YYYYMMddHH");
+        DateFormat df = new SimpleDateFormat("YYMMddHHmm");
         long d = getDueDate();
         
 
@@ -119,11 +119,11 @@ public class Assignment {
         String now = df.format(new Date());
         int nowInt = Integer.parseInt(now);
         
-        long diff = (d - nowInt)+((d%100) -(nowInt%100))*3;
+        long diff = (d - nowInt)+((d%10000) -(nowInt%10000))*3;
 
 
         System.out.println(diff);
-		return 100*(7.0/(diff) )* (1+Type)*(1/getCourse().getCurrentGrade())*getCourse().getDifficulty();
+		return 10000*(7.0/(diff) )* (1+Type)*(1/getCourse().getCurrentGrade())*getCourse().getDifficulty();
 		
 	}
 	
