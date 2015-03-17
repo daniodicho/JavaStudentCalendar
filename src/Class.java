@@ -34,6 +34,13 @@ public class Class {
         requiresReading = rR;
     }
 
+    public String getDays(){
+    	return days;
+    }
+    
+    public void setDays(String d){
+    	days = d;
+    }
     public String getName() {
         return this.name;  
     }

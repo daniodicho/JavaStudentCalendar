@@ -121,8 +121,6 @@ public class Assignment {
         
         long diff = (d - nowInt)+((d%10000) -(nowInt%10000))*3;
 
-
-        System.out.println(diff);
 		return 10000*(7.0/(diff) )* (1+Type)*(1/getCourse().getCurrentGrade())*getCourse().getDifficulty();
 		
 	}

@@ -1,8 +1,9 @@
+import java.util.Date;
 
 public class DaySlots {
-	String Date;
+	Date Date;
 	TimeSlot[] slot;
-	DaySlots(){
+	DaySlots(Date d){
 		slot = new TimeSlot[48];
 	    slot[0] = new TimeSlot("00:00","00:30",true);
 	    slot[1] = new TimeSlot("00:30","01:00",true);
@@ -52,13 +53,14 @@ public class DaySlots {
 	    slot[45] = new TimeSlot("22:30","23:00",true);
 	    slot[46] = new TimeSlot("23:00","23:30",true);
 	    slot[47] = new TimeSlot("23:30","24:00",true);
+	    setDate(d);
 	}
 	
-	public void setDate(String date){
+	public void setDate(Date date){
 		Date = date;
 	}
 	
-	public String getDate(){
+	public Date getDate(){
 		return Date;
 	}
 	
@@ -71,6 +73,7 @@ public class DaySlots {
 	}
 	
 	public void printAvailableTimes(){
+		System.out.print(getDate()+ ":   ");
 		boolean foundStart = false;
 		for(int i=0;i<48;i++){
 			if(foundStart&&(!slot[i].isFree())){
