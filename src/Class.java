@@ -1,12 +1,10 @@
 import java.util.LinkedList;
 
-public class Class {
+public class Class extends Routine{
 
-    String name ;
-    String days;
+    
     int difficulty;
-    String startTime;
-    String endTime;
+    
     int units;
     double currentGrade ;
     LinkedList <Assignment> assignments;
@@ -15,8 +13,6 @@ public class Class {
     public Class() {
         name = null;
         difficulty = 0;
-        startTime = null;
-        endTime = null;
         units = 0;
         currentGrade = 0;
         requiresReading = false;
@@ -34,20 +30,7 @@ public class Class {
         requiresReading = rR;
     }
 
-    public String getDays(){
-    	return days;
-    }
-    
-    public void setDays(String d){
-    	days = d;
-    }
-    public String getName() {
-        return this.name;  
-    }
-    
-    public void setName(String n) {
-        this.name = n;
-    }
+   
     
     public int getDifficulty() {
         return this.difficulty;  
@@ -57,21 +40,7 @@ public class Class {
         this.difficulty = d;
     }
     
-    public String getStartTime() {
-        return this.startTime;  
-    }
     
-    public void setStartTIme(String sT) {
-        this.startTime = sT;
-    }
-
-    public String getTimeLength() {
-        return this.endTime;  
-    }
-    
-    public void setTimeLength(String tL) {
-        this.endTime = tL;
-    }
 
     public int getUnits() {
         return this.units;

@@ -77,7 +77,7 @@ public class DaySlots {
 		boolean foundStart = false;
 		for(int i=0;i<48;i++){
 			if(foundStart&&(!slot[i].isFree())){
-				System.out.println(slot[i-1].finish);
+				System.out.print(slot[i-1].finish +"\t");
 				foundStart = false;
 			}
 			if(slot[i].isFree()&!foundStart){
@@ -86,7 +86,8 @@ public class DaySlots {
 			}
 		}
 		if(slot[47].isFree()){
-			System.out.println(slot[47].finish);
+			System.out.print(slot[47].finish);
 		}
+		System.out.println("");
 	}
 }
