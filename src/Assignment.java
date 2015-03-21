@@ -16,7 +16,7 @@ public class Assignment {
 	int Type ;
 	double Priority;
 	String SuggestedTime;
-	Double AllocatedTime;
+	int AllocatedTime;
 	String ActualCompletedTime;
 	Boolean Finished;
 	double Grade ;
@@ -78,14 +78,11 @@ public class Assignment {
 	public void setSuggestedTime(String suggestedTime) {
 		SuggestedTime = suggestedTime;
 	}
-	public void setSuggestedTimetest(int type, int units, int diff) {
-		SuggestedTime = ((3 * (type + 1)/(units)) * (diff/2.5)) * 2;
-	}
-	public Double getAllocatedTime() {
+	public int getAllocatedTime() {
 		return AllocatedTime;
 	}
-	public void setAllocatedTime(Double allocatedTime) {
-		AllocatedTime = allocatedTime;
+	public void setAllocatedTime(int type, int units, int diff) {
+		AllocatedTime = (int) (((3 * (type + 1)/(units)) * (diff/2.5)) * 2);
 	}
 	public String getActualCompletedTime() {
 		return ActualCompletedTime;

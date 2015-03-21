@@ -90,4 +90,13 @@ public class DaySlots {
 		}
 		System.out.println("");
 	}
+	
+	public String getFirstBusyTime(){
+		int i;
+		for(i=10;i<47;i++){
+			if(!slot[i].isFree())
+				break;
+		}
+		return slot[i].getStart();
+	}
 }
