@@ -78,6 +78,9 @@ public class Assignment {
 	public void setSuggestedTime(String suggestedTime) {
 		SuggestedTime = suggestedTime;
 	}
+	public void setSuggestedTimetest(int type, int units, int diff) {
+		SuggestedTime = ((3 * (type + 1)/(units)) * (diff/2.5)) * 2;
+	}
 	public Double getAllocatedTime() {
 		return AllocatedTime;
 	}
