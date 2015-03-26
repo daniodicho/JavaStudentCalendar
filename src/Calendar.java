@@ -38,12 +38,14 @@ public class Calendar {
 		today = calendar.getTime();
 	}
 	
-	public void addToDay(Date date, String start, String finish){
+	public void addToDay(String name, Date date, String start, String finish){
 		if(start.compareTo(finish)<0)
 		{
 			for(int i=0;i<14;i++){
 				if((slots[i].getDate().getMonth() == date.getMonth())&&(slots[i].getDate().getDate() == date.getDate())){
 					slots[i].newTime(start, finish);
+					slots[i].addEventInPlace(new Event(name,start,finish));
+
 				}
 			}
 		}
@@ -52,7 +54,10 @@ public class Calendar {
 			for(int i=0;i<14;i++){
 				if((slots[i].getDate().getMonth() == date.getMonth())&&(slots[i].getDate().getDate() == date.getDate())){
 					slots[i].newTime(start, "24:00");
+					slots[i].addEventInPlace(new Event(name,"24:00",finish));
 					slots[i+1].newTime("00:00", finish);
+					slots[i+1].addEventInPlace(new Event(name,"00:00",finish));
+
 				}
 			}
 	//		if(date.)
@@ -109,8 +114,11 @@ public class Calendar {
 			String daysChars[] = {"N","M","T","W","R","F","S"};
 			for(int j=0;j<routines.size();j++){
 				if(routines.get(j).getDays().contains(daysChars[day])){
-					addToDay(slots[i].getDate(),routines.get(j).startTime,routines.get(j).endTime);
-					addToDay(slots[i+7].getDate(),routines.get(j).startTime,routines.get(j).endTime);
+					addToDay(routines.get(j).getName(),slots[i].getDate(),routines.get(j).startTime,routines.get(j).endTime);
+		//			slots[i].addEventInPlace(new Event(routines.get(j).getName(),routines.get(j).startTime,routines.get(j).endTime));
+					addToDay(routines.get(j).getName(),slots[i+7].getDate(),routines.get(j).startTime,routines.get(j).endTime);
+			//		slots[i+7].addEventInPlace(new Event(routines.get(j).getName(),routines.get(j).startTime,routines.get(j).endTime));
+
 				}
 			}
 		}
@@ -122,20 +130,33 @@ public class Calendar {
 				StringInt si = timeShift(-10,time);
 
 				if(si.i==0){
-				addToDay(slots[i].getDate(),si.s,time);
-				addToDay(slots[i+7].getDate(),si.s,time);
+				addToDay("Sleep",slots[i].getDate(),si.s,time);
+				//slots[i].addEventInPlace(new Event("Sleep",si.s,time));
+				addToDay("Sleep",slots[i+7].getDate(),si.s,time);
+				//slots[i+7].addEventInPlace(new Event("Sleep",si.s,time));
+
 				}
 				else if(i!=0){
-					addToDay(slots[i+si.i].getDate(),si.s,"24:00");
-					addToDay(slots[i].getDate(),"00:00",time);
+					addToDay("Sleep",slots[i].getDate(),"00:00",time);
 
-					addToDay(slots[i+7+si.i].getDate(),si.s,"24:00");
-					addToDay(slots[i+7].getDate(),"00:00",time);	
+					addToDay("Sleep",slots[i+si.i].getDate(),si.s,"24:00");
+					//slots[i+si.i].addEventInPlace(new Event("Sleep",si.s,"24:00"));
+					//slots[i].addEventInPlace(new Event("Sleep","00:00",time));
+
+					addToDay("Sleep",slots[i+7+si.i].getDate(),si.s,"24:00");
+					//slots[i+7+si.i].addEventInPlace(new Event("Sleep",si.s,"24:00"));
+					addToDay("Sleep",slots[i+7].getDate(),"00:00",time);
+					//slots[i+7].addEventInPlace(new Event("Sleep","00:00",time));
+
 				}
 			}
 			else{
-				addToDay(slots[i].getDate(),"01:00","11:00");
-				addToDay(slots[i+7].getDate(),"01:00","11:00");
+				addToDay("Sleep",slots[i].getDate(),"02:00","10:00");
+				//slots[i].addEventInPlace(new Event("Sleep","01:00","11:00"));
+
+				addToDay("Sleep",slots[i+7].getDate(),"02:00","10:00");
+				//slots[i+7].addEventInPlace(new Event("Sleep","00:00","11:00"));
+
 			}
 		}
 	/*	for(int i=0;i<routines.size();i++){
