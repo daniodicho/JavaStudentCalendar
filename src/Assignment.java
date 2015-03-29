@@ -28,6 +28,7 @@ public class Assignment {
 		Type = newType;
 		Course = newClass;
 		Finished = false;
+		setAllocatedTime();
 		Priority = calculatePriority();
 	}
 	
@@ -81,8 +82,8 @@ public class Assignment {
 	public int getAllocatedTime() {
 		return AllocatedTime;
 	}
-	public void setAllocatedTime(int type, int units, int diff) {
-		AllocatedTime = (int) (((3 * (type + 1)/(units)) * (diff/2.5)) * 2);
+	public void setAllocatedTime() {
+		AllocatedTime = (int) (((this.Course.getUnits()/2)) + (this.Course.difficulty*(Type+1))+Type);
 	}
 	public String getActualCompletedTime() {
 		return ActualCompletedTime;

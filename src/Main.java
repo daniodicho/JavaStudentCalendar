@@ -14,17 +14,18 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		c = new Calendar();
-		c1 = new Class("Math",4,"N","06:00","11:00",5,0.9,false);
-		c2 = new Class("Comp 110",4,"MW","11:15","14:00",5,0.8,false);
+		c1 = new Class("Math",2,"R","06:00","11:00",5,0.9,false);
+		c2 = new Class("Comp 110",4,"MW","11:15","14:00",3,0.8,false);
 		job = new Routine("Job","F","08:00", "11:00");
 		
-		c.current.add(new Assignment("A1", c1, 1503262245, 0));
-		c.current.add(new Assignment("A1", c2, 1503271030, 0));
+		c.addInPlace(new Assignment("A1", c1, 1503282245, 0));
+		c.addInPlace(new Assignment("A2", c2, 1504031030, 1));
+		c.addInPlace(new Assignment("A0", c1, 1504052300, 2));
 		c.addClass(c1);
 		c.addClass(c2);
 		c.addRoutine(job);
-		System.out.println(c.current.get(0).getPriority());
-		System.out.println(c.current.get(1).getPriority());
+		for(int i=0;i<c.current.size();i++)
+		System.out.println(c.current.get(i).Name+" "+c.current.get(i).getAllocatedTime());
 
 	//	String[] days = {"Monday","Wednesday"};
 	//	Class c1 = new Class("math",4,days,"10:00","12:00",5,0.9,false);
